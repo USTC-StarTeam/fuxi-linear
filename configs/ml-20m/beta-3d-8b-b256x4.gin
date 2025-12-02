@@ -1,0 +1,43 @@
+# Run this as:
+# mkdir -p logs/ml-20m-l200/
+# CUDA_VISIBLE_DEVICES=0,1,2,3 python3 main.py --gin_config_file=configs/ml-20m/exp/overall-8b/beta-3d-8b-b256x4.gin --master_port=12363
+
+train_fn.dataset_name = "ml-20m"
+train_fn.max_sequence_length = 200
+train_fn.local_batch_size = 256
+train_fn.eval_batch_size = 512
+
+train_fn.main_module = "FuXi-Beta"
+train_fn.dropout_rate = 0.2
+train_fn.user_embedding_norm = "l2_norm"
+train_fn.num_epochs = 101
+train_fn.item_embedding_dim = 256
+
+fuxi_beta_encoder.num_blocks = 8
+fuxi_beta_encoder.num_heads = 8
+fuxi_beta_encoder.dv = 32
+fuxi_beta_encoder.dqk = 32
+fuxi_beta_encoder.linear_dropout_rate = 0.2
+fuxi_beta_encoder.ffn_multiply = 3
+
+train_fn.learning_rate = 4e-3
+train_fn.weight_decay = 0
+train_fn.num_warmup_steps = 0
+
+train_fn.interaction_module_type = "DotProduct"
+train_fn.top_k_method = "MIPSBruteForceTopK"
+
+train_fn.embedding_module_type = "local"
+
+train_fn.loss_module = "SampledSoftmaxLoss"
+train_fn.num_negatives = 128
+
+train_fn.sampling_strategy = "local"
+train_fn.temperature = 0.05
+train_fn.item_l2_norm = True
+train_fn.l2_norm_eps = 1e-6
+
+train_fn.enable_tf32 = True
+
+create_data_loader.prefetch_factor = 128
+create_data_loader.num_workers = 8

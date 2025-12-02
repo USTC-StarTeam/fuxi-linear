@@ -1,0 +1,44 @@
+# Run this as:
+# mkdir -p logs/ml-20m-l200/
+# CUDA_VISIBLE_DEVICES=3,4 python3 main.py --gin_config_file=configs/ml-20m/mamba-8b-b512x2.gin --master_port=12333
+
+train_fn.dataset_name = "ml-20m"
+train_fn.max_sequence_length = 200
+train_fn.local_batch_size = 256
+train_fn.eval_batch_size = 512
+
+train_fn.main_module = "mamba4rec"
+train_fn.dropout_rate = 0.2
+train_fn.user_embedding_norm = "l2_norm"
+train_fn.num_epochs = 201
+train_fn.item_embedding_dim = 256
+
+mamba4rec_encoder.num_blocks = 8
+mamba4rec_encoder.dropout_rate = 0.2
+
+mamba4rec_encoder.d_state = 32
+mamba4rec_encoder.d_conv = 4
+mamba4rec_encoder.expand = 2
+mamba4rec_encoder.expand_ffn = 4
+
+train_fn.learning_rate = 2e-4
+train_fn.weight_decay = 0
+train_fn.num_warmup_steps = 0
+
+train_fn.interaction_module_type = "DotProduct"
+train_fn.top_k_method = "MIPSBruteForceTopK"
+
+train_fn.embedding_module_type = "local"
+
+train_fn.loss_module = "SampledSoftmaxLoss"
+train_fn.num_negatives = 128
+
+train_fn.sampling_strategy = "local"
+train_fn.temperature = 0.05
+train_fn.item_l2_norm = True
+train_fn.l2_norm_eps = 1e-6
+
+train_fn.enable_tf32 = True
+
+create_data_loader.prefetch_factor = 128
+create_data_loader.num_workers = 8
