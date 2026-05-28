@@ -1,4 +1,4 @@
-# FuXi-Linear
+# FuXi-Linear [![arXiv](https://img.shields.io/badge/arXiv-2602.23671-b31b1b.svg)](https://arxiv.org/abs/2602.23671) [![DOI](https://zenodo.org/badge/1107431605.svg)](https://doi.org/10.5281/zenodo.20425007)
 
 This is the  Pytorch implementation for our paper `FuXi-Linear: Unleashing the Power of Linear Attention in Long-term Time-aware Sequential Recommendation`
 
