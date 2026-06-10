@@ -106,6 +106,13 @@ The included Gin files cover several model families and sequence-length settings
 
 The reported experiments focus on long user histories where efficient attention matters most. FuXi-Linear is designed to preserve the expressive benefits of sequence modeling while reducing prefill and decoding costs in thousand-length recommendation settings.
 
+| Finding | Paper evidence | Takeaway |
+| --- | --- | --- |
+| Overall accuracy | On Kuairand-27K and KuaiRec, FuXi-Linear reports average relative gains of **+9.26% NDCG@10**, **+7.24% NDCG@50**, **+9.01% HR@10**, **+5.11% HR@50**, and **+8.33% MRR**. | The linear design keeps accuracy competitive in long-sequence settings. |
+| Temporal channel | On Kuairand-27K, the temporal method reports **NDCG@10 0.0609**, **HR@10 0.1124**, and **MRR 0.0540** with linear complexity. | Explicit temporal modeling is a main source of the gain. |
+| Efficiency | The paper reports up to **10x prefill** and **21x decoding** speedups; at sequence length 8k, prefill is faster than FuXi-alpha, FuXi-beta, and HSTU. | The method targets deployment cost, not only offline accuracy. |
+| Scaling | On Kuairand-27K, **NDCG@10 / HR@10** scale from **0.0472 / 0.0881** at 188K parameters to **0.0710 / 0.1288** at 20M parameters. | The architecture preserves useful scaling behavior over larger models. |
+
 ## 11. Notes For Maintainers
 
 - Keep dataset files and training artifacts out of Git history.

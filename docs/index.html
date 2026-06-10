@@ -170,6 +170,36 @@ python3 preprocess_kuairec_data.py</code></pre>
 <p>The included Gin files cover several model families and sequence-length settings. Start from the dataset-specific <code>linear-*.gin</code> files when reproducing FuXi-Linear, then compare against the HSTU, Mamba, SASRec, TiM4Rec, and TTT configurations included in the same folders.</p>
 <h2 id="10-experimental-highlights">10. Experimental Highlights</h2>
 <p>The reported experiments focus on long user histories where efficient attention matters most. FuXi-Linear is designed to preserve the expressive benefits of sequence modeling while reducing prefill and decoding costs in thousand-length recommendation settings.</p>
+<table>
+<thead><tr>
+<th>Finding</th>
+<th>Paper evidence</th>
+<th>Takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overall accuracy</td>
+<td>On Kuairand-27K and KuaiRec, FuXi-Linear reports average relative gains of <strong>+9.26% NDCG@10</strong>, <strong>+7.24% NDCG@50</strong>, <strong>+9.01% HR@10</strong>, <strong>+5.11% HR@50</strong>, and <strong>+8.33% MRR</strong>.</td>
+<td>The linear design keeps accuracy competitive in long-sequence settings.</td>
+</tr>
+<tr>
+<td>Temporal channel</td>
+<td>On Kuairand-27K, the temporal method reports <strong>NDCG@10 0.0609</strong>, <strong>HR@10 0.1124</strong>, and <strong>MRR 0.0540</strong> with linear complexity.</td>
+<td>Explicit temporal modeling is a main source of the gain.</td>
+</tr>
+<tr>
+<td>Efficiency</td>
+<td>The paper reports up to <strong>10x prefill</strong> and <strong>21x decoding</strong> speedups; at sequence length 8k, prefill is faster than FuXi-alpha, FuXi-beta, and HSTU.</td>
+<td>The method targets deployment cost, not only offline accuracy.</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>On Kuairand-27K, <strong>NDCG@10 / HR@10</strong> scale from <strong>0.0472 / 0.0881</strong> at 188K parameters to <strong>0.0710 / 0.1288</strong> at 20M parameters.</td>
+<td>The architecture preserves useful scaling behavior over larger models.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="11-notes-for-maintainers">11. Notes For Maintainers</h2>
 <ul>
 <li>Keep dataset files and training artifacts out of Git history.</li>
