@@ -104,6 +104,11 @@ The included Gin files cover several model families and sequence-length settings
 
 ## 10. Experimental Highlights
 
+![FuXi-Linear public benchmark and efficiency results](docs/assets/fuxi-linear-public-results.png)
+
+The crop above combines the paper's public-dataset comparison and sequence-length efficiency curves, showing both the accuracy gains and the prefill/decode speed advantage that motivate the concise summary below.
+
+
 The reported experiments focus on long user histories where efficient attention matters most. FuXi-Linear is designed to preserve the expressive benefits of sequence modeling while reducing prefill and decoding costs in thousand-length recommendation settings.
 
 | Finding | Paper evidence | Takeaway |
