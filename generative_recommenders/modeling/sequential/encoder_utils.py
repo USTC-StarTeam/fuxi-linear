@@ -11,6 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Modified by USTC-StarTeam for the FuXi-Linear project, 2025-2026.
+# See the NOTICE file for attribution and modification details.
 
 # pyre-unsafe
 
@@ -31,8 +34,6 @@ from generative_recommenders.modeling.sequential.output_postprocessors import (
     OutputPostprocessorModule,
 )
 from generative_recommenders.modeling.sequential.sasrec import SASRec
-from generative_recommenders.modeling.sequential.tisasrec import TiSASRec
-from generative_recommenders.modeling.sequential.lru import LRURec
 from generative_recommenders.modeling.sequential.mamba4rec import Mamba4Rec
 from generative_recommenders.modeling.sequential.tim4rec import TiM4Rec
 from generative_recommenders.modeling.sequential.ttt4rec import TTT4Rec
@@ -75,69 +76,6 @@ def sasrec_encoder(
         verbose=verbose,
     )
     
-@gin.configurable
-def tisasrec_encoder(
-    max_sequence_length: int,
-    max_output_length: int,
-    embedding_module: EmbeddingModule,
-    interaction_module: InteractionModule,
-    input_preproc_module: InputFeaturesPreprocessorModule,
-    output_postproc_module: OutputPostprocessorModule,
-    activation_checkpoint: bool,
-    verbose: bool,
-    num_blocks: int = 2,
-    num_heads: int = 1,
-    time_span: int = 256,
-    dropout_rate: float = 0.2,
-    ffn_hidden_dim: int = 64,
-) -> GeneralizedInteractionModule:
-    return TiSASRec(
-        embedding_module=embedding_module,
-        max_sequence_len=max_sequence_length,
-        max_output_len=max_output_length,
-        embedding_dim=embedding_module.item_embedding_dim,
-        ffn_hidden_dim=ffn_hidden_dim,
-        num_blocks=num_blocks,
-        time_span=time_span,
-        dropout_rate=dropout_rate,
-        num_heads=num_heads,
-        similarity_module=interaction_module,  # pyre-ignore [6]
-        input_features_preproc_module=input_preproc_module,
-        output_postproc_module=output_postproc_module,
-        activation_checkpoint=activation_checkpoint,
-        verbose=verbose,
-    )    
-
-@gin.configurable
-def lrurec_encoder(
-    max_sequence_length: int,
-    max_output_length: int,
-    embedding_module: EmbeddingModule,
-    interaction_module: InteractionModule,
-    input_preproc_module: InputFeaturesPreprocessorModule,
-    output_postproc_module: OutputPostprocessorModule,
-    activation_checkpoint: bool,
-    verbose: bool,
-    ffn_multiply: int = 1,
-    ffn_dropout_rate: float = 0.2,
-    num_blocks: int = 2,
-) -> GeneralizedInteractionModule:
-    return LRURec(
-        embedding_module=embedding_module,
-        max_sequence_len=max_sequence_length,
-        max_output_len=max_output_length,
-        embedding_dim=embedding_module.item_embedding_dim,
-        ffn_multiply=ffn_multiply,
-        dropout_rate=ffn_dropout_rate,
-        ffn_dropout_rate=ffn_dropout_rate,
-        num_blocks=num_blocks,
-        similarity_module=interaction_module,  # pyre-ignore [6]
-        input_features_preproc_module=input_preproc_module,
-        output_postproc_module=output_postproc_module,
-        activation_checkpoint=activation_checkpoint,
-        verbose=verbose,
-    )
-
 @gin.configurable
 def mamba4rec_encoder(
     max_sequence_length: int,
@@ -478,10 +416,8 @@ def get_sequential_encoder(
 ) -> GeneralizedInteractionModule:
     module_dict = {
         'Fuxi-Linear': fuxi_linear_encoder,  
-        'lrurec': lrurec_encoder,
         'mamba4rec': mamba4rec_encoder,
         'tim4rec': tim4rec_encoder,
-        'TiSASRec': tisasrec_encoder,
         'ttt4rec': ttt4rec_encoder,
     }
     

@@ -124,9 +124,24 @@ The reported experiments focus on long user histories where efficient attention 
 - Store future README/project-page figures under `docs/assets/`.
 - When proceedings or presentation links become public, add them to the Paper section and project page.
 
+<a id="license"></a>
+
+## 12. License
+
+This project is licensed under the **Apache License, Version 2.0** (see [LICENSE](LICENSE)).
+
+It is derived from Meta Platforms' [generative-recommenders](https://github.com/meta-recsys/generative-recommenders) project, also Apache 2.0. Files retaining the upstream `Copyright (c) Meta Platforms, Inc. and affiliates.` notice are modifications of that upstream code, as indicated by the "Modified by USTC-StarTeam" notice in their headers. See [NOTICE](NOTICE) for attribution and modification details.
+
+The following files incorporate code distributed under the **MIT License**; the MIT copyright and permission notices are retained in each file's header:
+
+- `generative_recommenders/modeling/sequential/mamba4rec.py` — contains code from [Mamba4Rec](https://github.com/chengkai-liu/Mamba4Rec) by Chengkai Liu et al.
+- `generative_recommenders/modeling/sequential/ttt4rec.py` — contains code from [TTT4Rec](https://github.com/ZhaoqiZachYang/TTT4Rec) by Zhaoqi Yang et al.
+- `generative_recommenders/modeling/sequential/tim4rec.py` and `ssd.py` — contain code by Hao Fan.
+- `generative_recommenders/modeling/sequential/ttt.py` — copied from [test-time-training/ttt-lm-pytorch](https://github.com/test-time-training/ttt-lm-pytorch).
+
 <a id="citation"></a>
 
-## 12. Citation
+## 13. Citation
 
 ```bibtex
 @misc{ye2026fuxilinear,
@@ -140,7 +155,7 @@ The reported experiments focus on long user histories where efficient attention 
 }
 ```
 
-## 13. Contact
+## 14. Contact
 
 For paper questions, please contact:
 

@@ -11,6 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Modified by USTC-StarTeam for the FuXi-Linear project, 2025-2026.
+# This file is derived from the SASRec implementation in this repository
+# and incorporates code from Mamba4Rec by Chengkai Liu et al.
+# (https://github.com/chengkai-liu/Mamba4Rec), MIT License.
+# Original algorithm: Liu et al., "Mamba4Rec: Towards Efficient Sequential
+# Recommendation with Selective State Space Models", arXiv:2403.03900, 2024.
+# See the NOTICE file for attribution and modification details.
 
 # pyre-unsafe
 

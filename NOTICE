@@ -1,0 +1,47 @@
+FuXi-Linear
+Copyright 2025-2026 USTC-StarTeam
+
+This product includes software developed as part of the FuXi-Linear project
+(https://github.com/USTC-StarTeam/fuxi-linear), licensed under the Apache
+License, Version 2.0 (see LICENSE).
+
+========================================================================
+DERIVED WORK
+========================================================================
+
+This software is derived from Meta Platforms' "Generative Recommenders"
+project (https://github.com/meta-recsys/generative-recommenders), originally
+licensed under the Apache License, Version 2.0. Files retaining the upstream
+"Copyright (c) Meta Platforms, Inc. and affiliates." notice are modifications
+of that upstream code, as indicated by the "Modified by USTC-StarTeam" notice
+appended to their headers.
+
+========================================================================
+THIRD-PARTY COMPONENTS
+========================================================================
+
+The following files incorporate code distributed under the MIT License
+(https://opensource.org/licenses/MIT). The MIT copyright and permission
+notices are retained in each file's header.
+
+- generative_recommenders/modeling/sequential/mamba4rec.py
+    Contains code from Mamba4Rec by Chengkai Liu et al.
+    (https://github.com/chengkai-liu/Mamba4Rec), MIT License.
+    Original algorithm: Liu et al., "Mamba4Rec: Towards Efficient Sequential
+    Recommendation with Selective State Space Models", arXiv:2403.03900, 2024.
+
+- generative_recommenders/modeling/sequential/ttt4rec.py
+    Contains code from TTT4Rec by Zhaoqi Yang et al.
+    (https://github.com/ZhaoqiZachYang/TTT4Rec), MIT License.
+    Original algorithm: Yang et al., "TTT4Rec: A Test-Time Training Approach
+    for Rapid Adaption in Sequential Recommendation", arXiv:2409.19142, 2024.
+
+- generative_recommenders/modeling/sequential/tim4rec.py
+    Contains code from Hao Fan (TiM4Rec implementation), MIT License.
+
+- generative_recommenders/modeling/sequential/ssd.py
+    Contains code from Hao Fan, MIT License.
+
+- generative_recommenders/modeling/sequential/ttt.py
+    Copied from test-time-training/ttt-lm-pytorch
+    (https://github.com/test-time-training/ttt-lm-pytorch), MIT License.

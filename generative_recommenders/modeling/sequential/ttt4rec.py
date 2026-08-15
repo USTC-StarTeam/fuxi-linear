@@ -11,6 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Modified by USTC-StarTeam for the FuXi-Linear project, 2025-2026.
+# This file is derived from the SASRec implementation in this repository
+# and incorporates code from TTT4Rec by Zhaoqi Yang et al.
+# (https://github.com/ZhaoqiZachYang/TTT4Rec), MIT License.
+# Original algorithm: Yang et al., "TTT4Rec: A Test-Time Training Approach
+# for Rapid Adaption in Sequential Recommendation", arXiv:2409.19142, 2024.
+# See the NOTICE file for attribution and modification details.
 
 # pyre-unsafe
 
