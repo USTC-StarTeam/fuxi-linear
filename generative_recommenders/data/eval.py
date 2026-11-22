@@ -155,6 +155,7 @@ def eval_metrics_v2_from_tensors(
         dim=1,
     )
     eval_ranks = torch.where(eval_rank_indices == k, MAX_K + 1, eval_rank_indices + 1)
+    reciprocal_ranks = torch.where(eval_rank_indices < k, torch.div(1.0, eval_ranks), 0.0)
 
     output = {
         "ndcg@1": torch.where(
@@ -189,7 +190,7 @@ def eval_metrics_v2_from_tensors(
         "hr@200": (eval_ranks <= 200),
         "hr@500": (eval_ranks <= 500),
         "hr@1000": (eval_ranks <= 1000),
-        "mrr": torch.div(1.0, eval_ranks),
+        "mrr": reciprocal_ranks,
     }
     if target_ratings is not None:
         target_ratings = target_ratings.squeeze(1)  # [B]
@@ -204,9 +205,7 @@ def eval_metrics_v2_from_tensors(
         output[f"hr@50_>={min_positive_rating}"] = (
             eval_ranks[target_ratings >= min_positive_rating] <= 50
         )
-        output[f"mrr_>={min_positive_rating}"] = torch.div(
-            1.0, eval_ranks[target_ratings >= min_positive_rating]
-        )
+        output[f"mrr_>={min_positive_rating}"] = reciprocal_ranks[target_ratings >= min_positive_rating]
 
     return output  # pyre-ignore [7]
 
